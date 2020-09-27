@@ -9,40 +9,31 @@ using System;
 
 namespace PackStation
 {
-    public class Package
+    public class Box
     {
         #region Attributes
 
-        private int _id;
+        private Package _package;
 
         #endregion
 
         #region Properties
-    
-        public int Id { get => _id; set => _id = value; }
+
+        public Package Package { get => _package; set => _package = value; } 
 
         #endregion
 
         #region Constructors
 
         //Default Constructor
-        public Package()
+        public Box()
         {
-            Id = new Random().Next(int.MinValue, int.MaxValue);
+            Package = new Package();
         }
 
         #endregion
 
         #region Methods
-
-
-        #region Public
-
-        // Public Methods
-
-
-        #endregion
-
 
         #endregion
 

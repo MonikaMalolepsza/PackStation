@@ -32,6 +32,9 @@
   <ItemGroup>
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Model\Package.cs" />
+    <Compile Include="View\UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

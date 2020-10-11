@@ -52,9 +52,49 @@ namespace PackStation
             } 
         }
 
+        public void CloseBox()
+        {
+            if (Open == true)
+            {
+                Open = false;
+            }
+            else
+            {
+                throw new Exception("Box is already closed!");
+            }
+        }
+
+        public void SavePackage(Package package)
+        {
+            this.Package = package;
+
+        }
+
+
+        public Package ReleasePackage()
+        {
+            Package packageToRelease = this.Package;
+            this.Package = null;
+            return packageToRelease;
+        }
+
+        public bool isFull()
+        {
+            bool status;
+
+            if (this.Package != null)
+            {
+                status = true;
+            }
+            else
+            {
+                status = false;
+            }
+            return status;
+        }
+
         #endregion
 
-
-
+      
     }
 }

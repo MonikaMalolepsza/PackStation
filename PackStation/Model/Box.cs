@@ -14,12 +14,16 @@ namespace PackStation
         #region Attributes
 
         private Package _package;
+        private int _numer;
+        private bool _open;
 
         #endregion
 
         #region Properties
 
-        public Package Package { get => _package; set => _package = value; } 
+        public Package Package { get => _package; set => _package = value; }
+        public int Numer { get => _numer; set => _numer = value; }
+        public bool Open { get => _open; set => _open = value; }
 
         #endregion
 
@@ -28,12 +32,25 @@ namespace PackStation
         //Default Constructor
         public Box()
         {
-            Package = new Package();
+            Package = null;
+            Open = false; 
         }
 
         #endregion
 
         #region Methods
+
+        public void OpenBox()
+        {
+            if (Open == false)
+            {
+                Open = true;
+            }
+            else
+            {
+                throw new Exception("Box is already open!");
+            } 
+        }
 
         #endregion
 

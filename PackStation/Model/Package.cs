@@ -13,13 +13,23 @@ namespace PackStation
     {
         #region Attributes
 
-        private int _id;
+        private Guid _id;
+        private int _weight;
+        private string _reciever;
+        private string _sender;
+        private string _size;
+        private string _content;
 
         #endregion
 
         #region Properties
-    
-        public int Id { get => _id; set => _id = value; }
+
+        public int Weight { get => _weight; set => _weight = value; }
+        public Guid Id { get => _id; set => _id = value; }
+        public string Reciever { get => _reciever; set => _reciever = value; }
+        public string Sender { get => _sender; set => _sender = value; }
+        public string Size { get => _size; set => _size = value; }
+        public string Content { get => _content; set => _content = value; }
 
         #endregion
 
@@ -28,20 +38,19 @@ namespace PackStation
         //Default Constructor
         public Package()
         {
-            Id = new Random().Next(int.MinValue, int.MaxValue);
+            Id = Guid.NewGuid();
+        }
+
+        // Constructor
+        public Package(string content)
+        {
+            Id = Guid.NewGuid();
+            Content = content;
         }
 
         #endregion
 
         #region Methods
-
-
-        #region Public
-
-        // Public Methods
-
-
-        #endregion
 
 
         #endregion

@@ -37,6 +37,7 @@
     <Compile Include="Model\Package.cs" />
     <Compile Include="View\UserInterface.cs" />
     <Compile Include="Model\Box.cs" />
+    <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Station.cs" />
   </ItemGroup>
   <ItemGroup />

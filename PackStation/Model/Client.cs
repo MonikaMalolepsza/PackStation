@@ -10,17 +10,17 @@ namespace PackStation
     {
         #region Attributes
 
-        private Package _package;
+        private Package _parcel;
         private string _name;
-        private int _id;
+        private Guid _id;
         private string _address;
         #endregion
 
         #region Properties
 
-        public Package Package { get => _package; set => _package = value; }
+        public Package Parcel { get => _parcel; set => _parcel = value; }
         public string Name { get => _name; set => _name = value; }
-        public int Id { get => _id; set => _id = value; }
+        public Guid Id { get => _id; set => _id = value; }
         public string Address { get => _address; set => _address = value; }
 
         #endregion
@@ -30,15 +30,45 @@ namespace PackStation
         //Default Constructor
         public Client()
         {
-            Package = new Package();
-            Name = "";
-            Address = "";
+            Parcel = new Package();
+            Id = Guid.NewGuid();
+        }
 
+        public Client(string name, string address)
+        {
+            Parcel = new Package();
+            Id = Guid.NewGuid();
+            Name = name;
+            Address = address;
+        }
+
+        public Client(string name, string address, Package package)
+        {
+            Parcel = package;
+            Id = Guid.NewGuid();
+            Name = name;
+            Address = address;
         }
 
         #endregion
 
         #region Methods
+
+        public Package SendPackage()
+        {
+            Package pack = Parcel;
+            Parcel = null;
+            return pack;
+        }
+
+        public void GetPackage(Package p)
+        {
+            if (Parcel != null)
+            {
+                throw new Exception($"Client already has a package {Parcel.Id}!");
+            }
+            Parcel = p;
+        }
 
         #endregion
     }

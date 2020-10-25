@@ -1,5 +1,12 @@
-﻿using System;
-namespace PackStation.Model
+﻿//Autor:        Monika Malolepsza
+//Klasse:       IA119
+//Datei:        Station.cs
+//Datum:        24.09.2020
+//Beschreibung:
+//Aenderungen:  27.09.2020 Setup
+
+using System;
+namespace PackStation
 {
     public class Station
     {
@@ -28,35 +35,85 @@ namespace PackStation.Model
 
         #region Methods
 
-            /**
-             * TODO:
-             * implement open function which iterates over all the packages and returns the one to open.
-             */
-
-        public int PackageFinder( int packageId)
+        public Package GivePackageAway(Guid clientId)
         {
-            return packageId;
+       
+            return null;
         }
 
-            /**
-             * TODO:
-             * implement open function which opens the box.
-             */
-
-        public int BoxOpener( int packageId)
+        public Guid FindPackagesByClientId(Guid clientId)
         {
-            return packageId;
+            /**
+        * TODO:
+        * change this function to get the clientID
+        * and return the list of all the packages for this id
+        * 
+        *   int pos = FindBoxByPackageId(packageId);
+
+            if (pos != -1)
+            {
+                return Boxes[pos].ReleasePackage();
+            }
+        * 
+        * 
+        */
+            return null
+
+        }
+
+        public int SavePackageToBox(Package parcel)
+        {
+            int position = FindEmptyBox();
+
+            if (position != -1)
+            {
+                Boxes[position].Package = parcel;
+
+            }
+            else
+            {
+                throw new Exception("Empty Box not found, Station is full!");
+            }
+
+            return position;
+        }
+
+
+        public int FindEmptyBox()
+        {
+            for (int i = 0; i > Boxes.Length; i++)
+            {
+                if (Boxes[i].isFull() == false)
+                {
+                    return i;
+                }
+
+                if (Boxes[i] == null)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
             /**
-             * TODO:
-             * implement close function which closes the box.
+             * function which iterates over all the packages and returns the one to open.
              */
 
-        public bool BoxCloser(Package package)
+        private int FindBoxByPackageId( Guid packageId)
         {
-            return false;
+            for (int x = 0; x > Boxes.Length; x++)
+            {
+                if (Boxes[x].Package.Id.ToString() == packageId.ToString())
+                {
+                    return x;
+                }
+                else
+                {
+                    // continue
+                }
+            }
+            return -1;
         }
-
         #endregion
 
     }

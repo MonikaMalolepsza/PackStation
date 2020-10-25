@@ -39,6 +39,21 @@ namespace PackStation
 
         }
 
+        public void ClientSendsPackage()
+        {
+
+        }
+
+        public void ClientReceivesPackage()
+        {
+
+        }
+
+        public void ClientReceivesOverview()
+        {
+
+        }
+
         #endregion
     }
 }

@@ -36,6 +36,13 @@ namespace PackStation
             Open = false; 
         }
 
+        //Default Constructor
+        public Box(bool open, Package package)
+        {
+            Package = package;
+            Open = open;
+        }
+
         #endregion
 
         #region Methods
@@ -67,7 +74,6 @@ namespace PackStation
         public void SavePackage(Package package)
         {
             this.Package = package;
-
         }
 
 

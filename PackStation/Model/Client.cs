@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace PackStation
 {
-    class Client
+    public class Client
     {
         #region Attributes
 
         private Package _parcel;
+        private PackageLabel _packageLabel;
         private string _name;
         private Guid _id;
         private string _address;
@@ -22,6 +23,7 @@ namespace PackStation
         public string Name { get => _name; set => _name = value; }
         public Guid Id { get => _id; set => _id = value; }
         public string Address { get => _address; set => _address = value; }
+        public PackageLabel PackageLabel { get => _packageLabel; set => _packageLabel = value; }
 
         #endregion
 
@@ -30,14 +32,14 @@ namespace PackStation
         //Default Constructor
         public Client()
         {
-            Parcel = new Package();
             Id = Guid.NewGuid();
+            Parcel = new Package(Id);
         }
 
         public Client(string name, string address)
         {
-            Parcel = new Package();
             Id = Guid.NewGuid();
+            Parcel = new Package(Id);
             Name = name;
             Address = address;
         }
@@ -65,7 +67,7 @@ namespace PackStation
         {
             if (Parcel != null)
             {
-                throw new Exception($"Client already has a package {Parcel.Id}!");
+                throw new Exception($"Client already has a package: {Parcel.Id}!");
             }
             Parcel = p;
         }

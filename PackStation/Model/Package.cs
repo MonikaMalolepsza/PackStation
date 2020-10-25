@@ -14,9 +14,8 @@ namespace PackStation
         #region Attributes
 
         private Guid _id;
+        private Guid _clientId;
         private int _weight;
-        private string _reciever;
-        private string _sender;
         private string _size;
         private string _content;
 
@@ -26,10 +25,8 @@ namespace PackStation
 
         public int Weight { get => _weight; set => _weight = value; }
         public Guid Id { get => _id; set => _id = value; }
-        public string Reciever { get => _reciever; set => _reciever = value; }
-        public string Sender { get => _sender; set => _sender = value; }
+        public Guid ClientId { get => _clientId; set => _clientId = value; }
         public string Size { get => _size; set => _size = value; }
-        public string Content { get => _content; set => _content = value; }
 
         #endregion
 
@@ -42,16 +39,28 @@ namespace PackStation
         }
 
         // Constructor
-        public Package(string content)
+        public Package(string size, int weight, Guid client)
         {
             Id = Guid.NewGuid();
-            Content = content;
+            ClientId = client;
+            Size = size;
+            Weight = weight;
+        }
+
+        public Package(Guid client)
+        {
+            Id = Guid.NewGuid();
+            ClientId = client;
         }
 
         #endregion
 
         #region Methods
 
+        private string ShowWeight()
+        {
+            return this.Size;
+        }
 
         #endregion
 

@@ -34,6 +34,7 @@ namespace PackStation
         {
             Id = Guid.NewGuid();
             Parcel = new Package(Id);
+            PackageLabel = new PackageLabel(Parcel.Id, Id);
         }
 
         public Client(string name, string address)

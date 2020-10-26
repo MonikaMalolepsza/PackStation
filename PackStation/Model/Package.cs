@@ -46,7 +46,7 @@ namespace PackStation
             Size = size;
             Weight = weight;
         }
-
+        //Package should always have an owner!
         public Package(Guid client)
         {
             Id = Guid.NewGuid();

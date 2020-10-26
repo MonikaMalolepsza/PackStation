@@ -17,9 +17,15 @@ namespace PackStation
 
         #region atributes
 
+        private Station _station;
+        private Client _client;
+
         #endregion
 
         #region properties
+
+        public Station Station { get => _station; set => _station = value; }
+        public Client Client { get => _client; set => _client = value; }
 
         #endregion
 
@@ -27,7 +33,8 @@ namespace PackStation
 
         public Controller()
         {
-         
+            Station = new Station();
+            Client = new Client();
         }
 
         #endregion
@@ -41,12 +48,12 @@ namespace PackStation
 
         public void ClientSendsPackage()
         {
-
+            Station.SavePackageToBox(Client.SendPackage());
         }
 
         public void ClientReceivesPackage()
         {
-
+            Client.GetPackage(Station.GivePackageAway(packageId));
         }
 
         public void ClientReceivesOverview()

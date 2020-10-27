@@ -33,10 +33,10 @@ namespace PackStation
         #region Constructors
 
         //Default Constructor
-        public Package()
-        {
-            Id = Guid.NewGuid();
-        }
+       // public Package()
+       // {
+       //     Id = Guid.NewGuid();
+       // }
 
         // Constructor
         public Package(string size, int weight, Guid client)

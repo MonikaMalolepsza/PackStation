@@ -13,9 +13,13 @@ namespace PackStation
     {
         #region atributes
 
+        private string _text;
+
         #endregion
 
         #region properties
+
+        public string Text { get => _text; set => _text = value; }
 
         #endregion
 
@@ -23,14 +27,66 @@ namespace PackStation
 
         public UserInterface()
         {
-         
+            Text = " ";
         }
 
         #endregion
 
         #region methods
+        // read text
+
+        public string TextReader()
+        {
+            return Console.ReadLine();
+        }
+        // write text
+
+        public void TextWriter()
+        {
+            Console.Write(Text);
+        }
 
         //public
+        static int ShowMenu(ref string[] menuPoints, string headline)
+        {
+            int currentItem = 0;
+            ConsoleKeyInfo key = new ConsoleKeyInfo();
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(headline + "\n");
+
+                for (int counter = 0; counter < menuPoints.Length; counter++)
+                {
+                    if (currentItem == counter)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(menuPoints[counter]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        Console.WriteLine(menuPoints[counter]);
+                    }
+                }
+
+                Console.WriteLine("\n\nYou can navigate with the arrow keys.\nConfirm your entry with the return key.");
+                key = Console.ReadKey(true);
+                if (key.Key.ToString() == "DownArrow")
+                {
+                    currentItem++;
+                    if (currentItem > menuPoints.Length - 1) currentItem = 0;
+                }
+                else if (key.Key.ToString() == "UpArrow")
+                {
+                    currentItem--;
+                    if (currentItem < 0) currentItem = menuPoints.Length - 1;
+                }
+            } while (key.Key.ToString() != "Enter");
+
+            return currentItem;
+        }
 
         public void Splashinfo()
         {

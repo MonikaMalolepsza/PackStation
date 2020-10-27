@@ -41,7 +41,7 @@ namespace PackStation
             return null;
         }
 
-        public Guid FindPackagesByClientId(Guid clientId)
+        public Guid[] FindPackagesByClientId(Guid clientId)
         {
             /**
         * TODO:

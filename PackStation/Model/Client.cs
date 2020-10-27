@@ -11,7 +11,6 @@ namespace PackStation
         #region Attributes
 
         private Package _parcel;
-        private PackageLabel _packageLabel;
         private string _name;
         private Guid _id;
         private string _address;
@@ -23,7 +22,6 @@ namespace PackStation
         public string Name { get => _name; set => _name = value; }
         public Guid Id { get => _id; set => _id = value; }
         public string Address { get => _address; set => _address = value; }
-        public PackageLabel PackageLabel { get => _packageLabel; set => _packageLabel = value; }
 
         #endregion
 
@@ -34,7 +32,6 @@ namespace PackStation
         {
             Id = Guid.NewGuid();
             Parcel = new Package(Id);
-            PackageLabel = new PackageLabel(Parcel.Id, Id);
         }
 
         public Client(string name, string address)

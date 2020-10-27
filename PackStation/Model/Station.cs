@@ -37,29 +37,32 @@ namespace PackStation
 
         public Package GivePackageAway(Guid clientId)
         {
-       
-            return null;
-        }
-
-        public Guid[] FindPackagesByClientId(Guid clientId)
-        {
-            /**
-        * TODO:
-        * change this function to get the clientID
-        * and return the list of all the packages for this id
-        * 
-        *   int pos = FindBoxByPackageId(packageId);
+        int pos = FindBoxByClientId(clientId);
 
             if (pos != -1)
             {
                 return Boxes[pos].ReleasePackage();
             }
-        * 
-        * 
-        */
-            
-
+            else
+            {
+                throw new Exception("No package found for this client ID");
+            }
         }
+
+        public Package GivePackagePreviewForClient(Guid clientId)
+        {
+            int pos = FindBoxByClientId(clientId);
+
+            if (pos != -1)
+            {
+                return Boxes[pos].Package;
+            }
+            else
+            {
+                throw new Exception("No package found for this client ID");
+            }
+        }
+
 
         public int SavePackageToBox(Package parcel)
         {
@@ -72,7 +75,7 @@ namespace PackStation
             }
             else
             {
-                throw new Exception("Empty Box not found, Station is full!");
+                throw new Exception("Station is full!");
             }
 
             return position;
@@ -95,9 +98,26 @@ namespace PackStation
             }
             return -1;
         }
-            /**
-             * function which iterates over all the packages and returns the one to open.
-             */
+
+        private int FindBoxByClientId(Guid clientId)
+        {
+            for (int x = 0; x > Boxes.Length; x++)
+            {
+                if (Boxes[x].Package.ClientId.ToString() == clientId.ToString())
+                {
+                    return x;
+                }
+                else
+                {
+                    // continue
+                }
+            }
+            return -1;
+        }
+
+        /**
+         * function which iterates over all the packages and returns the one to open.
+         */
 
         private int FindBoxByPackageId( Guid packageId)
         {

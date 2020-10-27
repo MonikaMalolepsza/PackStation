@@ -11,6 +11,7 @@ namespace PackStation
         #region Attributes
 
         private Package _parcel;
+        private Package[] _packages;
         private string _name;
         private Guid _id;
         private string _address;
@@ -22,32 +23,26 @@ namespace PackStation
         public string Name { get => _name; set => _name = value; }
         public Guid Id { get => _id; set => _id = value; }
         public string Address { get => _address; set => _address = value; }
+        public Package[] Packages { get => _packages; set => _packages = value; }
 
         #endregion
 
         #region Constructors
 
         //Default Constructor
-        public Client()
+        public Client(string name)
         {
+            Name = name;
             Id = Guid.NewGuid();
-            Parcel = new Package(Id);
         }
-
+        
         public Client(string name, string address)
         {
             Id = Guid.NewGuid();
-            Parcel = new Package(Id);
             Name = name;
             Address = address;
-        }
+            Parcel = new Package(this.Name, this.Address, this.Id);
 
-        public Client(string name, string address, Package package)
-        {
-            Parcel = package;
-            Id = Guid.NewGuid();
-            Name = name;
-            Address = address;
         }
 
         #endregion

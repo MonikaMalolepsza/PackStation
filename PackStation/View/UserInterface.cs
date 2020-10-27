@@ -15,6 +15,7 @@ namespace PackStation
 
         private string _text;
 
+
         #endregion
 
         #region properties
@@ -46,8 +47,19 @@ namespace PackStation
             Console.Write(Text);
         }
 
+        public void DisplayPackageInfo(Package p)
+        {
+            Console.Clear();
+
+            //@ - in line vars
+            //$ - no need to escape chars
+
+            Text = $@"Package details:\n Name: {p.Name} \n Address: {p.Address}\n Id: {p.Id.ToString()} \n Client: {p.ClientId.ToString()}";
+            TextWriter();
+        }
+
         //public
-        static int ShowMenu(ref string[] menuPoints, string headline)
+        public int ShowMenu(string[] menuPoints, string headline)
         {
             int currentItem = 0;
             ConsoleKeyInfo key = new ConsoleKeyInfo();

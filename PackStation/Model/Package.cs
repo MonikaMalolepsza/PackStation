@@ -15,51 +15,47 @@ namespace PackStation
 
         private Guid _id;
         private Guid _clientId;
-        private int _weight;
-        private string _size;
+        private string _address;
+        private string _name;
         private string _content;
 
         #endregion
 
         #region Properties
 
-        public int Weight { get => _weight; set => _weight = value; }
+        public string Address { get => _address; set => _address = value; }
         public Guid Id { get => _id; set => _id = value; }
+        public string Name { get => _name; set => _name = value; }
+        public string Content { get => _content; set => _content = value; }
         public Guid ClientId { get => _clientId; set => _clientId = value; }
-        public string Size { get => _size; set => _size = value; }
 
         #endregion
 
         #region Constructors
 
         //Default Constructor
-       // public Package()
-       // {
-       //     Id = Guid.NewGuid();
-       // }
+        public Package()
+         {
+             Id = Guid.NewGuid();
+         }
 
-        // Constructor
-        public Package(string size, int weight, Guid client)
-        {
-            Id = Guid.NewGuid();
-            ClientId = client;
-            Size = size;
-            Weight = weight;
-        }
         //Package should always have an owner!
-        public Package(Guid client)
+        public Package(string name, string address, Guid client)
         {
             Id = Guid.NewGuid();
             ClientId = client;
+            Name = name;
+            Address = address;
         }
+      
 
         #endregion
 
         #region Methods
 
-        private string ShowWeight()
+        private string ShowSender()
         {
-            return this.Size;
+            return this.Name;
         }
 
         #endregion

@@ -13,7 +13,8 @@ namespace PackStation
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Controller c = new Controller();
+            c.run();
         }
     }
 }

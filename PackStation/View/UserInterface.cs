@@ -47,6 +47,13 @@ namespace PackStation
             Console.Write(Text);
         }
 
+        public void FindClientMenu() 
+        {
+            Console.Clear();
+            Text = "Please provide the Client's name:";
+            TextWriter();
+        }
+
         public void DisplayPackageInfo(Package p)
         {
             Console.Clear();
@@ -102,6 +109,7 @@ namespace PackStation
 
         public void Splashinfo()
         {
+            Console.Clear();
             string[] titles = { "Project name:", "Version:", "Data:", "Author:", "Class:" };
             string[] information = { "Pack Station", "1.0", "24.09.2020", "Monika Malolepsza", "IA119" };
             Console.CursorTop = 5;

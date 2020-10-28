@@ -30,6 +30,15 @@ namespace PackStation
         #region Constructors
 
         //Default Constructor
+
+        public Client()
+        {
+            Name = "";
+            Id = Guid.NewGuid();
+        }
+        
+
+
         public Client(string name)
         {
             Name = name;

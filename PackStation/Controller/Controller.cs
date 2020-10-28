@@ -90,6 +90,7 @@ namespace PackStation
                         do
                         {
                             int operation = UI.ShowMenu(new string[] { "Send parcel", "Receive parcel", "Display all my package IDs", "Back" }, "What would you like to do:");
+
                             switch (operation)
                             {
                                 case 0:

@@ -65,7 +65,6 @@ namespace PackStation
             TextWriter();
         }
 
-        //public
         public int ShowMenu(string[] menuPoints, string headline)
         {
             int currentItem = 0;

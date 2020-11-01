@@ -23,19 +23,27 @@ namespace PackStation
         public string Name { get => _name; set => _name = value; }
         public Guid Id { get => _id; set => _id = value; }
         public string Address { get => _address; set => _address = value; }
-        public Package[] Packages { get => _packages; set => _packages = value; }
 
         #endregion
 
         #region Constructors
 
         //Default Constructor
+
+        public Client()
+        {
+            Name = "";
+            Id = Guid.NewGuid();
+        }
+
+
+
         public Client(string name)
         {
             Name = name;
             Id = Guid.NewGuid();
         }
-        
+
         public Client(string name, string address)
         {
             Id = Guid.NewGuid();

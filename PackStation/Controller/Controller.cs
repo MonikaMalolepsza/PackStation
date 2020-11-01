@@ -38,6 +38,7 @@ namespace PackStation
         public Controller()
         {
             Station = new Station();
+            Client = new Client();
             Clients = new Client[3];
             Clients[0] = new Client("Jan", "Toronto");
             Clients[1] = new Client("Max", "Dublin");
@@ -51,10 +52,13 @@ namespace PackStation
 
         public void run()
         {
+            UI.Splashinfo();
+
             bool isActive = true;
             do
             {
                 int selectedMainMenuPoint = UI.ShowMenu(new string[] { "Add new Client", "Provide Client Name", "Splashinfo", "Exit" }, "Main Menu");
+                bool KundeIstAusgewaehlt = false;
 
                 switch (selectedMainMenuPoint)
                 {
@@ -70,9 +74,10 @@ namespace PackStation
                          */
                         break;
                     case 1:
-                        bool KundeIstAusgewaehlt = false;
 
-                        Client activeClient = FindClient(UI.TextReader());
+                        UI.FindClientMenu();
+
+                        Client activeClient = this.FindClient(UI.TextReader());
 
                         if (activeClient != null)
                         {
@@ -80,11 +85,12 @@ namespace PackStation
                         }
                         else
                         {
-                            //empty;
+                            //Fehlermeldung Kunde existiert nicht
                         }
                         do
                         {
                             int operation = UI.ShowMenu(new string[] { "Send parcel", "Receive parcel", "Display all my package IDs", "Back" }, "What would you like to do:");
+
                             switch (operation)
                             {
                                 case 0:
@@ -126,16 +132,13 @@ namespace PackStation
 
         public void ClientReceivesOverview(Client client)
         {
-            Package p = Station.GivePackagePreviewForClient(client.Id);
-            UI.DisplayPackageInfo(p);
+            Guid[] packageIds = Station.GivePackagePreviewForClient(client.Id);
+            UI.DisplayPackageInfo(packageIds);
         }
-        public void ClientOpensPackage()
-        {
-            // ???
-        }
+
         public Client FindClient(string name)
         {
-            for (int i = 0; i > Clients.Length; i++)
+            for (int i = 0; i < Clients.Length; i++)
             {
                 if (Clients[i].Name == name)
                 {
@@ -143,7 +146,7 @@ namespace PackStation
                 }
                 else
                 {
-                    continue;
+                    //continue;
                 }
             }
             return null;

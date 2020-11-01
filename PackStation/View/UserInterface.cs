@@ -47,18 +47,27 @@ namespace PackStation
             Console.Write(Text);
         }
 
-        public void DisplayPackageInfo(Package p)
+        public void FindClientMenu()
+        {
+            Console.Clear();
+            Text = "Please provide the Client's name:";
+            TextWriter();
+        }
+
+        public void DisplayPackageInfo(Guid[] packageIds)
         {
             Console.Clear();
 
             //@ - in line vars
             //$ - no need to escape chars
-
-            Text = $@"Package details:\n Name: {p.Name} \n Address: {p.Address}\n Id: {p.Id.ToString()} \n Client: {p.ClientId.ToString()}";
+            Text = "Package details:\n";
+            foreach (Guid g in packageIds)
+            {
+                Text += g.ToString() + "\n";
+            }
             TextWriter();
         }
 
-        //public
         public int ShowMenu(string[] menuPoints, string headline)
         {
             int currentItem = 0;
@@ -102,6 +111,7 @@ namespace PackStation
 
         public void Splashinfo()
         {
+            Console.Clear();
             string[] titles = { "Project name:", "Version:", "Data:", "Author:", "Class:" };
             string[] information = { "Pack Station", "1.0", "24.09.2020", "Monika Malolepsza", "IA119" };
             Console.CursorTop = 5;

@@ -35,9 +35,9 @@ namespace PackStation
 
         //Default Constructor
         public Package()
-         {
-             Id = Guid.NewGuid();
-         }
+        {
+            Id = Guid.NewGuid();
+        }
 
         //Package should always have an owner!
         public Package(string name, string address, Guid client)
@@ -47,7 +47,7 @@ namespace PackStation
             Name = name;
             Address = address;
         }
-      
+
 
         #endregion
 

@@ -14,7 +14,7 @@ namespace PackStation
         #region Attributes
 
         private Box[] _boxes;
- 
+
         #endregion
 
         #region Properties
@@ -29,6 +29,10 @@ namespace PackStation
         public Station()
         {
             Boxes = new Box[9];
+            for (int i = 0; i < 9; i++)
+            {
+                Boxes[i] = new Box();
+            }
         }
 
         #endregion
@@ -37,7 +41,7 @@ namespace PackStation
 
         public Package GivePackageAway(Guid clientId)
         {
-        int pos = FindBoxByClientId(clientId);
+            int pos = FindBoxByClientId(clientId);
 
             if (pos != -1)
             {
@@ -49,18 +53,40 @@ namespace PackStation
             }
         }
 
-        public Package GivePackagePreviewForClient(Guid clientId)
+        private int GetNumberPackagesForClient(Guid clientId)
         {
-            int pos = FindBoxByClientId(clientId);
+            int res = 0;
+            for (int x = 0; x > Boxes.Length; x++)
+            {
+                if (Boxes[x].Package.ClientId.ToString() == clientId.ToString())
+                {
+                    res++;
+                }
+                else
+                {
+                    // continue
+                }
+            }
+            return res;
+        }
 
-            if (pos != -1)
+        public Guid[] GivePackagePreviewForClient(Guid clientId)
+        {
+            Guid[] clientPackages = new Guid[GetNumberPackagesForClient(clientId)];
+            int counter = 0;
+            for (int x = 0; x > Boxes.Length; x++)
             {
-                return Boxes[pos].Package;
+                if (Boxes[x].Package.ClientId.ToString() == clientId.ToString())
+                {
+                    clientPackages[counter] = Boxes[x].Package.Id;
+                    counter++;
+                }
+                else
+                {
+                    // continue
+                }
             }
-            else
-            {
-                throw new Exception("No package found for this client ID");
-            }
+            return clientPackages;
         }
 
 
@@ -82,18 +108,17 @@ namespace PackStation
         }
 
 
-        public int FindEmptyBox()
+        private int FindEmptyBox()
         {
-            for (int i = 0; i > Boxes.Length; i++)
+            for (int i = 0; i < Boxes.Length; i++)
             {
-                if (Boxes[i].isFull() == false)
+                if (Boxes[i].Package == null)
                 {
                     return i;
                 }
-
-                if (Boxes[i] == null)
+                else
                 {
-                    return i;
+                    //Nichts
                 }
             }
             return -1;
@@ -101,9 +126,9 @@ namespace PackStation
 
         private int FindBoxByClientId(Guid clientId)
         {
-            for (int x = 0; x > Boxes.Length; x++)
+            for (int x = 0; x < Boxes.Length; x++)
             {
-                if (Boxes[x].Package.ClientId.ToString() == clientId.ToString())
+                if (Boxes[x].Package != null && Boxes[x].Package.ClientId.ToString() == clientId.ToString())
                 {
                     return x;
                 }
@@ -119,7 +144,7 @@ namespace PackStation
          * function which iterates over all the packages and returns the one to open.
          */
 
-        private int FindBoxByPackageId( Guid packageId)
+        private int FindBoxByPackageId(Guid packageId)
         {
             for (int x = 0; x > Boxes.Length; x++)
             {

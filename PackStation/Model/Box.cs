@@ -33,7 +33,7 @@ namespace PackStation
         public Box()
         {
             Package = null;
-            Open = false; 
+            Open = false;
         }
 
         //Default Constructor
@@ -56,7 +56,7 @@ namespace PackStation
             else
             {
                 throw new Exception("Box is already open!");
-            } 
+            }
         }
 
         public void CloseBox()
@@ -101,6 +101,6 @@ namespace PackStation
 
         #endregion
 
-      
+
     }
 }

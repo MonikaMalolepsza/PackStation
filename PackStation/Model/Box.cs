@@ -80,7 +80,7 @@ namespace PackStation
         public Package ReleasePackage()
         {
             Package packageToRelease = this.Package;
-            this.Package = null;
+            Package = null;
             return packageToRelease;
         }
 

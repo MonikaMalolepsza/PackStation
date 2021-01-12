@@ -12,60 +12,59 @@ namespace PackStation
     public class UserInterface
     {
         #region atributes
-
         private string _text;
-
-
         #endregion
 
         #region properties
-
         public string Text { get => _text; set => _text = value; }
-
         #endregion
 
         #region constructors
-
         public UserInterface()
         {
-            Text = " ";
+            Splashinfo();
         }
-
         #endregion
 
         #region methods
-        // read text
-
-        public string TextReader()
-        {
-            return Console.ReadLine();
-        }
-        // write text
-
-        public void TextWriter()
-        {
-            Console.Write(Text);
-        }
-
-        public void FindClientMenu()
+        public void GivePackagePreviewForClient(int[] packageIds)
         {
             Console.Clear();
-            Text = "Please provide the Client's name:";
-            TextWriter();
-        }
+            Console.WriteLine($"There are {packageIds.Length} packages for you:");
+            Console.WriteLine();
+            Console.WriteLine("Nr        Package ID");
 
-        public void DisplayPackageInfo(Guid[] packageIds)
-        {
-            Console.Clear();
-
-            //@ - in line vars
-            //$ - no need to escape chars
-            Text = "Package details:\n";
-            foreach (Guid g in packageIds)
+            for (int i = 0; i < packageIds.Length; i++)
             {
-                Text += g.ToString() + "\n";
+                Console.WriteLine($"({i + 1})       {packageIds[i]}");
             }
-            TextWriter();
+
+            Console.ReadKey(true);
+        }
+
+        public Client Register()
+        {
+            Client c = new Client(new Random().Next());
+            Console.WriteLine("Enter your name: ");
+            c.Name = Console.ReadLine();
+            Console.WriteLine("Enter your adress: ");
+            c.Address = Console.ReadLine();
+            Console.WriteLine($"Finished, your clientid is: {c.Id}");
+            return c;
+        }
+
+        public int EnterPackageId()
+        {
+            Console.Clear();
+            Console.WriteLine("Please enter the id of your package:");
+            return Convert.ToInt32(Console.ReadLine());
+        }
+
+        public int AuthenticateClient()
+        {
+            Console.Clear();
+            Console.WriteLine("Please authenticate by entering your client Id");
+            return Convert.ToInt32(Console.ReadLine());
         }
 
         public int ShowMenu(string[] menuPoints, string headline)
@@ -128,9 +127,6 @@ namespace PackStation
             Console.ReadKey(true);
 
         }
-
         #endregion
-
-
     }
 }

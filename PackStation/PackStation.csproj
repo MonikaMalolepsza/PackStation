@@ -27,6 +27,9 @@
     <WarningLevel>4</WarningLevel>
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>PackStation.main</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>

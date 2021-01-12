@@ -13,39 +13,36 @@ namespace PackStation
     {
         #region Attributes
 
-        private Guid _id;
-        private Guid _clientId;
-        private string _address;
-        private string _name;
+        private int _id;
+        private int receiver;
+        private int transmitter;
         private string _content;
 
         #endregion
 
         #region Properties
 
-        public string Address { get => _address; set => _address = value; }
-        public Guid Id { get => _id; set => _id = value; }
-        public string Name { get => _name; set => _name = value; }
+        public int Receiver { get => receiver; set => receiver = value; }
+        public int Id { get => _id; set => _id = value; }
+        public int Transmitter { get => transmitter; set => transmitter = value; }
         public string Content { get => _content; set => _content = value; }
-        public Guid ClientId { get => _clientId; set => _clientId = value; }
 
         #endregion
 
         #region Constructors
 
         //Default Constructor
-        public Package()
+        public Package(int id)
         {
-            Id = Guid.NewGuid();
+            Id = id;   
         }
 
         //Package should always have an owner!
-        public Package(string name, string address, Guid client)
+        public Package(int receiver, int transmitter, int id)
         {
-            Id = Guid.NewGuid();
-            ClientId = client;
-            Name = name;
-            Address = address;
+            Id = id;
+            Transmitter = transmitter;
+            Receiver = receiver;
         }
 
 
@@ -53,9 +50,9 @@ namespace PackStation
 
         #region Methods
 
-        private string ShowSender()
+        private string ShowTransmitter()
         {
-            return this.Name;
+            return this.Transmitter.ToString();
         }
 
         #endregion

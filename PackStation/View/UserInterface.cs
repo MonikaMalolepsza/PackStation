@@ -108,6 +108,12 @@ namespace PackStation
             return currentItem;
         }
 
+        public void Info(string text)
+        {
+           Console.Clear();
+           Console.WriteLine(text);
+        }
+
         public void Splashinfo()
         {
             Console.Clear();

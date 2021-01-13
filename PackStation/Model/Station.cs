@@ -21,7 +21,8 @@ namespace PackStation
         #region Properties
 
         public Box[] Boxes { get => _boxes; set => _boxes = value; }
-        public UserInterface Terminal;
+        public UserInterface Terminal { get => _terminal; set => _terminal = value; }
+
         #endregion
 
         #region Constructors

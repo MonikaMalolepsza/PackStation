@@ -87,7 +87,17 @@ namespace PackStation
                 c = Station.Register();
                 Clients.Add(c);
             }
-            Station.SavePackageToBox(c.SendPackage());
+
+            try
+            {
+                Station.SavePackageToBox(c.SendPackage());
+            }
+            catch (Exception e)
+            {
+                Station.Terminal.Info(e.Message);
+
+            }
+
         }
 
         private void ClientReceivesPackage()
@@ -96,7 +106,18 @@ namespace PackStation
             int clientPos = Clients.IndexOf(GetClientById(clientId));
             if (clientPos != -1)
             {
-                Clients[clientPos].GetPackage(Station.GivePackageAway(Station.EnterPackageId()));
+                try
+                {
+                    Clients[clientPos].GetPackage(Station.GivePackageAway(Station.EnterPackageId()));
+                }
+                catch(Exception e)
+                {
+                    Station.Terminal.Info(e.Message);
+                }
+            }
+            else
+            {
+                Station.Terminal.Info("This client does not exists. Please double check the id.");
             }
         }
 
@@ -107,6 +128,10 @@ namespace PackStation
             if (c != null)
             {
                 Station.GivePackagePreviewForClient(clientId);
+            }
+            else
+            {
+                Station.Terminal.Info("Client not found");
             }
         }
         public Client GetClientById(int clientId)

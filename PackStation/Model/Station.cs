@@ -136,7 +136,7 @@ namespace PackStation
                 }
                 else
                 {
-                    //Nichts
+                    // Empty
                 }
             }
             return -1;

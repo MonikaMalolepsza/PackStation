@@ -38,6 +38,11 @@ namespace PackStation
             }
         }
 
+        public Station(Box[] boxes)
+        {
+            Terminal = new UserInterface();
+            Boxes = boxes;
+        }
         #endregion
 
         #region Methods       
@@ -47,6 +52,8 @@ namespace PackStation
 
             if (pos != -1)
             {
+                Terminal.Text = "Package received!";
+                Terminal.print();
                 return Boxes[pos].ReleasePackage();
             }
             else
@@ -64,6 +71,8 @@ namespace PackStation
                 Boxes[position].OpenBox();
                 Boxes[position].Package = parcel;
                 Boxes[position].CloseBox();
+                Terminal.Text = "Package dropped off!";
+                Terminal.print();
             }
             else
             {
@@ -148,26 +157,6 @@ namespace PackStation
             for (int x = 0; x < Boxes.Length; x++)
             {
                 if (Boxes[x].Package != null && Boxes[x].Package.Id == packageId)
-                {
-                    return x;
-                }
-                else
-                {
-                    // continue
-                }
-            }
-            return -1;
-        }
-
-        /**
-         * function which iterates over all the packages and returns the one to open.
-         */
-
-        private int FindBoxByPackageId(Guid packageId)
-        {
-            for (int x = 0; x > Boxes.Length; x++)
-            {
-                if (Boxes[x].Package.Id.ToString() == packageId.ToString())
                 {
                     return x;
                 }

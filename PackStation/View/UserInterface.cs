@@ -24,6 +24,12 @@ namespace PackStation
         {
             Splashinfo();
         }
+        public UserInterface(string text)
+        {
+            Splashinfo();
+            Text = text;
+            print();
+        }
         #endregion
 
         #region methods
@@ -133,6 +139,13 @@ namespace PackStation
             Console.ReadKey(true);
 
         }
+
+        public void print()
+        {
+            Console.WriteLine(Text);
+            Console.ReadKey(true);
+        }
+
         #endregion
     }
 }

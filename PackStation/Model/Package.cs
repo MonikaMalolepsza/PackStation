@@ -32,6 +32,10 @@ namespace PackStation
         #region Constructors
 
         //Default Constructor
+        public Package()
+        {
+            Id = 1;
+        }
         public Package(int id)
         {
             Id = id;   
